@@ -34,12 +34,24 @@ body::-webkit-scrollbar {
     --scroll-track: rgb(255, 0, 0);
     --scroll-thumb-color: rgba(27, 132, 0, 0.8);
   }
-.container_general {
+
+  .container_general {
     display: flex;
     flex-direction: column;
     position: absolute;
     left: 50%;
     top: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+}
+
+widgetbot {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 1000px;
     transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
@@ -162,8 +174,35 @@ body::-webkit-scrollbar {
     transition: all 0.5s ease;
 }
 
+
+.container_discordmenu ul{
+    list-style: none;
+}
+
+
+
+info_discord {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 1000px;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+}
+
+.container_discordmenu ul li .fa{
+    color:#e1ff00f1;
+    margin-top: 14px;
+    transition: all 0.5s ease;
+}
+
 @media screen and (max-width: 640px){
     .container_socialMedia{
+        width: 240px;
+    }
+    .container_discordmenu{
         width: 240px;
     }
     .container_socialMedia ul li{
@@ -179,6 +218,9 @@ body::-webkit-scrollbar {
 
 @media screen and (max-width: 340px){
     .container_socialMedia{
+        width: 80px;
+    }
+    .container_discordmenu{
         width: 80px;
     }
     .container_socialMedia ul li{
