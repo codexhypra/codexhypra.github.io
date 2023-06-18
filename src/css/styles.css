@@ -31,11 +31,11 @@ body::-webkit-scrollbar {
   :root {
     --scroll-size: 1px;
     --scroll-radius: 10px;
-    --scroll-track: rgb(255, 0, 0);
+    --scroll-track: rgba(255, 0, 0, 0);
     --scroll-thumb-color: rgba(27, 132, 0, 0.8);
   }
 
-  .container_general {
+.container_general {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -46,16 +46,7 @@ body::-webkit-scrollbar {
     justify-content: center;
 }
 
-widgetbot {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 50%;
-    top: 1000px;
-    transform: translate(-50%, -50%);
-    align-items: center;
-    justify-content: center;
-}
+
 
 .container_name {
     cursor: pointer;
@@ -181,20 +172,31 @@ widgetbot {
 
 
 
-info_discord {
+.info_discord {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    right: 1px;
+    top: 27vw;
+    /* transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center; */
+}
+
+widgetbot {
     display: flex;
     flex-direction: column;
     position: absolute;
     left: 50%;
-    top: 1000px;
+    top: 70vw;
     transform: translate(-50%, -50%);
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
 }
 
 .container_discordmenu ul li .fa{
     color:#e1ff00f1;
-    margin-top: 14px;
+    top: 54px;
     transition: all 0.5s ease;
 }
 
