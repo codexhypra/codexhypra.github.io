@@ -88,80 +88,232 @@ body::-webkit-scrollbar {
 }
 
 .container_socialMedia ul li .fa{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     color:#e1ff00f1;
     margin-top: 14px;
     transition: all 0.5s ease;
 }
 
+.container_socialMedia ul li .fa{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    color:#e1ff00f1;
+    margin-top: 14px;
+    transition: all 0.5s ease;
+}
+
+.container_socialMedia ul li.instagram{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid #e1ff00f1;
+    box-shadow: 0 0 15px #e1ff00f1;
+    transition: all 0.5s ease;
+}
+
 .container_socialMedia ul li:hover.instagram{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
     border: 3px solid #C13584;
     box-shadow: 0 0 15px #C13584;
     transition: all 0.5s ease;
 }
 
 .container_socialMedia ul li:hover .fa-instagram{
+    margin-top: 14%;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     color: #C13584;
     text-shadow: 0 0 15px #C13584;
     transition: all 0.5s ease;
 }
 
 .container_socialMedia ul li:hover.twitter{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
     border: 3px solid #1DA1F2;
     box-shadow: 0 0 15px #1DA1F2;
     transition: all 0.5s ease;
 }
 
 .container_socialMedia ul li:hover .fa-twitter{
+    margin-top: 14%;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     color: #1DA1F2;
     text-shadow: 0 0 15px #1DA1F2;
     transition: all 0.5s ease;
 }
 
+.container_socialMedia ul li.twitter{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid #e1ff00f1;
+    box-shadow: 0 0 15px #e1ff00f1;
+    transition: all 0.5s ease;
+}
+
+.container_socialMedia ul li:hover.twitter{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    border: 3px solid #1DA1F2;
+    box-shadow: 0 0 15px #1DA1F2;
+    transition: all 0.5s ease;
+}
+
 .container_socialMedia ul li:hover.paypal{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
     border: 3px solid #009cde;
     box-shadow: 0 0 15px #009cde;
     transition: all 0.5s ease;
 }
 
 .container_socialMedia ul li:hover .fa-paypal{
+    margin-top: 14%;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
     color: #009cde;
     text-shadow: 0 0 15px #009cde;
     transition: all 0.5s ease;
 }
 
+.container_socialMedia ul li.paypal{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid #e1ff00f1;
+    box-shadow: 0 0 15px #e1ff00f1;
+    transition: all 0.5s ease;
+}
+
+.container_socialMedia ul li:hover.paypal{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    border: 3px solid #009cde;
+    box-shadow: 0 0 15px #009cde;
+    transition: all 0.5s ease;
+}
+
 .container_socialMedia ul li:hover.github{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     border: 3px solid #0042FF;
     box-shadow: 0 0 15px #0042FF;
     transition: all 0.5s ease;
 }
 
 .container_socialMedia ul li:hover .fa-github{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     color: #0042FF;
     text-shadow: 0 0 15px #0042FF;
     transition: all 0.5s ease;
 }
 
+.container_socialMedia ul li.github{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid #e1ff00f1;
+    box-shadow: 0 0 15px #e1ff00f1;
+    transition: all 0.5s ease;
+}
+
+.container_socialMedia ul li:hover.github{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid #0042FF;
+    box-shadow: 0 0 15px #0042FF;
+    transition: all 0.5s ease;
+}
+
 .container_socialMedia ul li:hover.spotify{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     border: 3px solid #1DB954;
     box-shadow: 0 0 15px #1DB954;
     transition: all 0.5s ease;
 }
 
 .container_socialMedia ul li:hover .fa-spotify{
+    margin-top: 14%;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     color: #1DB954;
     text-shadow: 0 0 15px #1DB954;
     transition: all 0.5s ease;
 }
 
+.container_socialMedia ul li.spotify{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid #e1ff00f1;
+    box-shadow: 0 0 15px #e1ff00f1;
+    transition: all 0.5s ease;
+}
+
+.container_socialMedia ul li:hover.spotify{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    border: 3px solid #1DB954;
+    box-shadow: 0 0 15px #1DB954;
+    transition: all 0.5s ease;
+}
+
 .container_socialMedia ul li:hover.steam{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     border: 3px solid #0d75c9;
     box-shadow: 0 0 15px #0d75c9;
     transition: all 0.5s ease;
 }
 
 .container_socialMedia ul li:hover .fa-steam{
+    margin-top: 14%;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     color: #0d75c9;
     text-shadow: 0 0 15px #0d75c9;
+    transition: all 0.5s ease;
+}
+
+.container_socialMedia ul li.steam{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid #e1ff00f1;
+    box-shadow: 0 0 15px #e1ff00f1;
+    transition: all 0.5s ease;
+}
+
+.container_socialMedia ul li:hover.steam{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    border: 3px solid #0d75c9;
+    box-shadow: 0 0 15px #0d75c9;
     transition: all 0.5s ease;
 }
 
@@ -195,7 +347,7 @@ widgetbot {
 }
 
 .container_discordmenu ul li .fa{
-    color:#e1ff00f1;
+    color:#cfe718f1;
     top: 54px;
     transition: all 0.5s ease;
 }
@@ -204,7 +356,7 @@ widgetbot {
     .container_socialMedia{
         width: 240px;
     }
-    .container_discordmenu{
+    widgetbot{
         width: 240px;
     }
     .container_socialMedia ul li{
@@ -222,7 +374,7 @@ widgetbot {
     .container_socialMedia{
         width: 80px;
     }
-    .container_discordmenu{
+    widgetbot{
         width: 80px;
     }
     .container_socialMedia ul li{
@@ -235,3 +387,5 @@ widgetbot {
         margin-left: 7px;
     }
 }
+
+
