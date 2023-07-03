@@ -367,40 +367,54 @@ button {
     background-color: #ff0055;
   }
 
-@media screen and (max-width: 640px){
-    .container_socialMedia{
-        width: 240px;
+  @media (max-width: 768px) {
+    .container_socialMedia ul li {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin: 0 3px;
+      font-size: 18px;
     }
-    .widgetbot{
-        width: 50%;
+  
+    .container_socialMedia ul li .fa {
+      width: 30px;
+      height: 30px;
+      margin-top: 6px;
     }
-    .container_socialMedia ul li{
-        margin-top: 10px;
-    }
-    .container_socialMedia ul li.spotify{
-        margin-left: 82px;
-    }
-    .container_socialMedia ul li.steam{
-        margin-left: 82px;
-    }
-}
 
-@media screen and (max-width: 340px){
-    .container_socialMedia{
-        width: 80px;
+    .container_logo {
+        width: 30px;
+        height: 30px;
+        margin-top: 6px;
+      }
+
+    .info_discord {
+        text-align: center;
     }
-    .widgetbot{
-        width: 50%;
+  }
+  
+  @media (max-width: 480px) {
+    .container_general {
+      margin: 10%;
     }
-    .container_socialMedia ul li{
-        margin-top: 15px;
+
+    .info_discord {
+        text-align: center;
     }
-    .container_socialMedia ul li.spotify{
-        margin-left: 7px;
+  
+    .container_name {
+      font-size: 120%;
     }
-    .container_socialMedia ul li.steam{
-        margin-left: 7px;
+  
+    .container_desc {
+      width: 120px;
+      height: 25px;
+      font-size: 12px;
+      line-height: 23px;
+      margin-top: 10%;
     }
-}
+  
+    /* Add more styles for mobile view as needed */
+  }
 
 
