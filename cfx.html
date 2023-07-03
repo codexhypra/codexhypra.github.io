@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    @font-face {
+      font-family: 'CustomFont';
+      /* Add the path to your 'Font.ttf' file when you have it */
+      src: url('Font.ttf'); 
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/f63ac1ec2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="background">
+    <div class="box">
+      <div class="info-box">
+        <div class="info-text">
+          <div class="info-text-main">CFX FINDER</div>
+          <div class="subline">Discover and Explore</div>
+        </div>
+      </div>
+      <input type="text" id="textBox" onkeydown="checkEnter(event)" placeholder="INSERT CFX">
+      <button onclick="embedWebsite()"><i class="fas fa-search"></i> SEARCH</button>
+      <iframe id="embeddedWebsite" class="embedded-website"></iframe>
+      <div id="displayBox"></div>
+    </div>
+    <i class="fas fa-arrows-alt-h resize-icon"></i>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
