@@ -352,6 +352,21 @@ widgetbot {
     transition: all 0.5s ease;
 }
 
+button {
+    margin-top: -100px;
+    background-color: #ff006a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ff0055;
+  }
+
 @media screen and (max-width: 640px){
     .container_socialMedia{
         width: 240px;
