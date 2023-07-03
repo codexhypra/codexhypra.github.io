@@ -356,8 +356,8 @@ widgetbot {
     .container_socialMedia{
         width: 240px;
     }
-    widgetbot{
-        width: 240px;
+    .widgetbot{
+        width: 50%;
     }
     .container_socialMedia ul li{
         margin-top: 10px;
@@ -374,8 +374,8 @@ widgetbot {
     .container_socialMedia{
         width: 80px;
     }
-    widgetbot{
-        width: 80px;
+    .widgetbot{
+        width: 50%;
     }
     .container_socialMedia ul li{
         margin-top: 15px;
