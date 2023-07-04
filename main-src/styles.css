@@ -1,0 +1,147 @@
+@font-face {
+    font-family: 'GGSANS';
+    /* Add the path to your 'Font.ttf' file when you have it */
+    src: url('./ggsans-ExtraBold.ttf'); 
+  }
+
+html, body {
+    overflow: hidden;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('./image.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 200px;
+}
+
+.icon-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+a {
+    text-decoration: none;
+}
+
+.icon-box i {
+    font-size: 24px;
+    color: white;
+    text-decoration: none !important;
+}
+
+.steam {
+    background-color: #222244;
+}
+
+.twitter {
+    background-color: #4499ff;
+}
+
+.instagram {
+    background-color: #ff44aa;
+}
+
+.github {
+    background-color: #1a1a1a;
+}
+
+.icon-box.steam:hover {
+    box-shadow: 0 0 10px #bbcfff;
+    transform: scale(1.1);
+}
+
+.icon-box.twitter:hover {
+    box-shadow: 0 0 10px #4499ff;
+    transform: scale(1.1);
+}
+
+.icon-box.instagram:hover {
+    box-shadow: 0 0 10px #ff44aa;
+    transform: scale(1.1);
+}
+
+.icon-box.github:hover {
+    box-shadow: 0 0 10px #ffffff;
+    transform: scale(1.1);
+}
+
+#widget-button {
+    background-color: #353d98;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#widget-button.active-button {
+    font-family: 'GGSANS', Arial, sans-serif;
+    background-color: #5865F2;
+}
+
+
+#widget-button:hover {
+    font-family: 'GGSANS', Arial, sans-serif;
+    background-color: #5865F2;
+    cursor: pointer;
+    box-shadow: 0 0 10px #727eff;
+    transform: scale(1.1);
+}
+
+.widget-container {
+    display: none;
+    text-align: center;
+    margin-top: 20px; /* Add separation from the widget button */
+}
+
+.widget-container.show-widget {
+    display: block;
+}
+
+button {
+    margin-top: 20px; /* Add separation from the widget button */
+    background-color: #ff006a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ff0055;
+  }

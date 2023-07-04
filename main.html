@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODEX HYPRA'S WEB</title>
+    <link rel="stylesheet" href="./main-src/styles.css">
+    <link rel="shortcut icon" href="./main-src/logo.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/f63ac1ec2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="./main-src/logo.png" alt="Logo">
+        </div>
+        <div class="icon-row">
+            <a href="https://steamcommunity.com/id/codexhypra/">
+                <div class="icon-box steam">
+                    <i class="fab fa-steam"></i>
+                </div>
+            </a>
+            <a href="https://twitter.com/codexhypra">
+                <div class="icon-box twitter">
+                    <i class="fab fa-twitter"></i>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/hypra1">
+                <div class="icon-box instagram">
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </a>
+            <a href="https://spotify.com">
+                <div class="icon-box github">
+                    <i class="fab fa-github"></i>
+                </div>
+            </a>
+        </div>
+        <button id="widget-button" class="active-button">DISCORD</button>
+        <div class="widget-container" id="widget-container">
+            <widgetbot id="button"
+                type="button"
+                server="1053365662501851136"
+                channel="1118679843538743387"
+                width="100%"
+                height="400"
+            ></widgetbot> 
+            <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+        </div>
+        <a href="cfx">
+            <button>CFX</button>
+        </a>
+        <script src="./src/js/main.js" defer></script>
+        </div>
+    </div>
+
+    <script>
+        const widgetButton = document.getElementById('widget-button');
+        const widgetContainer = document.getElementById('widget-container');
+
+        widgetButton.addEventListener('click', () => {
+            widgetContainer.classList.toggle('show-widget');
+            widgetButton.classList.toggle('active-button');
+
+            if (widgetContainer.classList.contains('show-widget')) {
+                widgetButton.textContent = 'CLOSE';
+            } else {
+                widgetButton.textContent = 'DISCORD';
+            }
+        });
+    </script>
+</body>
+</html>
