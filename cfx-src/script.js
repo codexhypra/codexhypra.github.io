@@ -30,4 +30,9 @@ window.onload = function() {
   }
 };
 
+function goBack() {
+  // Replace 'home.html' with the path to your home page
+  window.location.href = 'index';
+}
+
 

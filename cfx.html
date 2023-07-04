@@ -22,5 +22,17 @@
   </div>
   <button class="go-back-button" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
   <script src="./cfx-src/script.js"></script>
+  <script>
+    // Add the following code to load additional JavaScript files
+    function loadScript(url) {
+      var script = document.createElement("script");
+      script.src = url;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+
+    // Example: Load additional JavaScript file
+    loadScript("./additional-script.js");
+  </script>
 </body>
 </html>
