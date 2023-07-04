@@ -47,27 +47,42 @@
             <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
         </div>
         <a href="cfx">
-            <button>CFX</button>
+            <button id="cfx-button">CFX</button>
         </a>
-        <a href="lookup">
-            <button>IP</button>
-        </a>
-        </div>
-        <script>
-            const widgetButton = document.getElementById('widget-button');
-            const widgetContainer = document.getElementById('widget-container');
-    
-            widgetButton.addEventListener('click', () => {
-                widgetContainer.classList.toggle('show-widget');
-                widgetButton.classList.toggle('active-button');
-    
-                if (widgetContainer.classList.contains('show-widget')) {
-                    widgetButton.textContent = 'CLOSE';
-                } else {
-                    widgetButton.textContent = 'DISCORD';
-                }
-            });
-        </script>
+        <!-- <a href="lookup">
+            <button id="ip-button">IP</button>
+        </a> -->
     </div>
+    <script>
+        const widgetButton = document.getElementById('widget-button');
+        const widgetContainer = document.getElementById('widget-container');
+    
+        widgetButton.addEventListener('click', () => {
+            widgetContainer.classList.toggle('show-widget');
+            widgetButton.classList.toggle('active-button');
+            playClickSound(); // Play click sound on button click
+            if (widgetContainer.classList.contains('show-widget')) {
+                widgetButton.textContent = 'CLOSE';
+            } else {
+                widgetButton.textContent = 'DISCORD';
+            }
+        });
+
+        function playClickSound() {
+            const audio = new Audio('./main-src/click.mp3'); // Replace 'click-sound.mp3' with your desired sound file
+            audio.play();
+        }
+
+        const cfxButton = document.getElementById('cfx-button');
+        const ipButton = document.getElementById('ip-button');
+
+        cfxButton.addEventListener('click', () => {
+            playClickSound(); // Play click sound on CFX button click
+        });
+
+        ipButton.addEventListener('click', () => {
+            playClickSound(); // Play click sound on IP button click
+        });
+    </script>
 </body>
 </html>
