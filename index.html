@@ -49,24 +49,25 @@
         <a href="cfx">
             <button>CFX</button>
         </a>
-        <script src="./src/js/main.js" defer></script>
+        <a href="lookup">
+            <button>IP</button>
+        </a>
         </div>
+        <script>
+            const widgetButton = document.getElementById('widget-button');
+            const widgetContainer = document.getElementById('widget-container');
+    
+            widgetButton.addEventListener('click', () => {
+                widgetContainer.classList.toggle('show-widget');
+                widgetButton.classList.toggle('active-button');
+    
+                if (widgetContainer.classList.contains('show-widget')) {
+                    widgetButton.textContent = 'CLOSE';
+                } else {
+                    widgetButton.textContent = 'DISCORD';
+                }
+            });
+        </script>
     </div>
-
-    <script>
-        const widgetButton = document.getElementById('widget-button');
-        const widgetContainer = document.getElementById('widget-container');
-
-        widgetButton.addEventListener('click', () => {
-            widgetContainer.classList.toggle('show-widget');
-            widgetButton.classList.toggle('active-button');
-
-            if (widgetContainer.classList.contains('show-widget')) {
-                widgetButton.textContent = 'CLOSE';
-            } else {
-                widgetButton.textContent = 'DISCORD';
-            }
-        });
-    </script>
 </body>
 </html>

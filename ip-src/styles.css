@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'VCR_OSD_MONO_1.001';
+    src: url('./ip-src/VCR_OSD_MONO_1.001.ttf') format('truetype');
+  }
+
+  .go-back-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 0; /* Set font-size to zero to remove any text space */
+    color: #fff;
+    background-color: #333;
+    border: 2px;
+    border-color: #e91e63;
+    cursor: pointer;
+    z-index: 9999;
+  }
+  
+  .go-back-button i {
+    border: 2px;
+    border-color: #e91e63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+  
+  body {
+    font-family: 'VCR_OSD_MONO_1.001', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url('./ip-src/image.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(8px);
+    overflow: hidden; /* Add this line to remove the scroll */
+  }
+  
+  .container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeIn 0.5s ease-in-out;
+    overflow: hidden; /* Add this line to remove the scroll */
+  }
+
+  .box {
+    width: 100%;
+    border: 1px solid rgba(255, 0, 255, 0.9);
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+  }
+  
+  input[type="text"] {
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 0, 255, 0.9);
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: 1px solid #ffffff;
+    transform: scale(1.05);
+    backdrop-filter: blur(8px);
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #000000;
+  }
+  
+  button:hover {
+    border: 1px solid #ffffff;
+    transform: scale(1.05);
+    backdrop-filter: blur(8px);
+  }
+  
+  .box:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  .container:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  .container .box:first-child {
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .container .box:last-child {
+    border-radius: 0 0 10px 10px;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

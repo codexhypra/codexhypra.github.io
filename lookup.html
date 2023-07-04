@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="./ip-src/styles.css">
+  <script src="https://kit.fontawesome.com/f63ac1ec2a.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background-image: url('./ip-src/image.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      <h3>IP Information</h3>
+      <input type="text" id="ipInput" placeholder="Enter IP address">
+      <button onclick="lookupIP()">Lookup</button>
+      <div id="ip"></div>
+      <div id="hostname"></div>
+      <div id="country"></div>
+      <div id="city"></div>
+    </div>
+
+    <div class="box">
+      <h3>ISP Information</h3>
+      <div id="isp"></div>
+      <div id="as"></div>
+      <div id="org"></div>
+    </div>
+
+    <div class="box">
+      <h3>Location</h3>
+      <div id="region"></div>
+      <div id="timezone"></div>
+      <div id="lat"></div>
+      <div id="lon"></div>
+    </div>
+    
+    <div class="box">
+      <h3>Network Traffic</h3>
+      <div id="ping"></div> <!-- Added this line -->
+    </div>
+  </div>
+  <button class="go-back-button" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+  <script src="./ip-src/script.js"></script>
+</body>
+</html>
