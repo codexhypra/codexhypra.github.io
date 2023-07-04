@@ -1,3 +1,33 @@
+
+@font-face {
+  font-family: 'CustomFont';
+  /* Add the path to your 'Font.ttf' file when you have it */
+  src: url('./cfx-src/Font.ttf');
+}
+
+.go-back-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  font-size: 0; /* Set font-size to zero to remove any text space */
+  color: #fff;
+  background-color: #333;
+  border: 2px;
+  border-color: #e91e63;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.go-back-button i {
+  border: 2px;
+  border-color: #e91e63;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
 body {
   margin: 0;
 }
