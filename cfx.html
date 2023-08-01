@@ -1,38 +1,244 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="./cfx-src/styles.css">
-  <script src="https://kit.fontawesome.com/f63ac1ec2a.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Bot Website</title>
+    <link rel="stylesheet" href="./cfx-src/styles.css">
+    <!-- Font Awesome CSS -->
+    <script src="https://kit.fontawesome.com/f63ac1ec2a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="background">
-    <div class="box">
-      <div class="info-box">
-        <div class="info-text">
-          <div class="info-text-main">CFX FINDER</div>
-          <div class="subline">Discover and Explore</div>
+    <button id="darkModeToggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+    <div class="container">
+        <h1><i class="fas fa-robot"></i> CFX FINDER WEB BY HYPRA</h1>
+        <input type="text" id="codeInput" placeholder="Enter your cfx code">
+        <button onclick="getCfxInfo()" class="button-primary"><i class="fas fa-search"></i> Get Server Info</button>
+        <div id="output"></div>
+        
+        <!-- Players Feature - Display all players by default -->
+        <div id="playersList" style="display:none;">
+            <h3><i class="fas fa-users"></i> Players:</h3>
+            <div class="player-search" style="display:none;">
+                <input type="text" id="playerSearchInput" oninput="searchPlayers()" placeholder="Search players">
+                <i class="fas fa-search"></i>
+            </div>
+            <ul id="playersUl">
+                <!-- Players will be displayed here -->
+            </ul>
         </div>
-      </div>
-      <input type="text" id="textBox" onkeydown="checkEnter(event)" placeholder="INSERT CFX">
-      <button onclick="embedWebsite()"><i class="fas fa-search"></i> SEARCH</button>
-      <iframe id="embeddedWebsite" class="embedded-website"></iframe>
-      <div id="displayBox"></div>
+        <!-- End of Players Feature -->
+        
+        <!-- Resources Feature - Hidden by default, shows when "Show Resources" button is clicked -->
+        <div id="resourcesList" style="display:none;">
+            <h3><i class="fas fa-cubes"></i> Resources:</h3>
+            <div class="resource-search">
+                <input type="text" id="resourceSearchInput" oninput="searchResources()" placeholder="Search resources">
+                <i class="fas fa-search"></i>
+            </div>
+            <ul>
+                <!-- Resources will be displayed here -->
+            </ul>
+        </div>
+        <!-- End of Resources Feature -->
+        
     </div>
-    <i class="fas fa-arrows-alt-h resize-icon"></i>
-  </div>
-  <button class="go-back-button" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-  <script src="./cfx-src/script.js"></script>
-  <script>
-    // Add the following code to load additional JavaScript files
-    function loadScript(url) {
-      var script = document.createElement("script");
-      script.src = url;
-      script.async = true;
-      document.head.appendChild(script);
-    }
+    <script>
+        // Function to toggle dark mode like a boss
+        function toggleTheme() {
+            const body = document.querySelector('body');
+            body.classList.toggle('dark-theme');
 
-    // Example: Load additional JavaScript file
-    loadScript("./additional-script.js");
-  </script>
+            // Save the dark mode setting to localStorage because why not?
+            localStorage.setItem('darkMode', body.classList.contains('dark-theme'));
+        }
+
+        // Function to save the server code to localStorage, ain't nobody got time to retype it
+        function saveServerCode(code) {
+            localStorage.setItem('serverCode', code);
+        }
+
+        // Function to get the saved server code from localStorage, it's just there, lurking
+        function getSavedServerCode() {
+            return localStorage.getItem('serverCode') || '';
+        }
+
+        // Function to restore the saved settings, because who wants to lose their settings?
+        function restoreSettings() {
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            const body = document.querySelector('body');
+            if (savedDarkMode) {
+                body.classList.add('dark-theme');
+            }
+
+            const savedServerCode = getSavedServerCode();
+            const codeInput = document.getElementById('codeInput');
+            codeInput.value = savedServerCode;
+        }
+
+        // Call the function to restore settings on page load, because we are considerate like that
+        restoreSettings();
+
+        // Function to create an embed with the given content, like a pro
+        function createEmbed(content) {
+            const embed = document.createElement('div');
+            embed.classList.add('embed');
+            embed.innerHTML = content;
+            output.appendChild(embed);
+        }
+
+        // Function to fetch cfx info like a ninja
+        function getCfxInfo() {
+            const codeInput = document.getElementById('codeInput');
+            const code = codeInput.value;
+            const output = document.getElementById('output');
+            output.innerHTML = '';
+
+            // Save the entered server code to localStorage
+            saveServerCode(code);
+
+            // Replace this API endpoint with the appropriate one for your server
+            const fivemApiUrl = `https://servers-frontend.fivem.net/api/servers/single/${code}`;
+
+            fetch(fivemApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.statusCode === 404) {
+                        createEmbed(`<p class="error">Invalid Code</p>`);
+                    } else {
+                        // Process the data and make another API call to get additional server details
+                        const ipAddress = data.Data.connectEndPoints[0].split(':')[0];
+                        const geoApiUrl = `http://ip-api.com/json/${ipAddress}`;
+
+                        fetch(geoApiUrl)
+                            .then(response => response.json())
+                            .then(geoData => {
+                                // Create an embed content with all the available data
+                                let embedContent = `
+                                    <h2><i class="fas fa-server"></i> ${data.Data.hostname}</h2>
+                                    <p><i class="fas fa-globe"></i> IP:Port: ${data.Data.connectEndPoints[0]}</p>
+                                    <p><i class="fas fa-server"></i> Server Name: ${data.Data.hostname}</p>
+                                    <p><i class="fas fa-users"></i> Online Players: ${data.Data.players.length}</p>
+                                    <p><i class="fas fa-users-cog"></i> Max Players: ${data.Data.svMaxclients}</p>
+                                    <p><i class="fas fa-cogs"></i> Artifacts: ${data.Data.server}</p>
+                                    <p><i class="fas fa-cubes"></i> Resources: ${data.Data.resources.length}</p>
+                                    <p><i class="fas fa-toggle-on"></i> Onesync Enabled: ${data.Data.vars.onesync_enabled}</p>
+                                    <p><i class="fas fa-globe"></i> Country: ${geoData.country}</p>
+                                    <p><i class="fas fa-city"></i> City: ${geoData.city}</p>
+                                    <p><i class="fas fa-wifi"></i> ISP: ${geoData.isp}</p>
+                                    <p><i class="fas fa-building"></i> Org: ${geoData.org}</p>
+                                    <p><i class="fas fa-map-marker-alt"></i> Zip Code: ${geoData.zip}</p>
+                                    <p><i class="fas fa-clock"></i> Timezone: ${geoData.timezone}</p>
+                                    <!-- Add more data fields as needed -->
+                                    <div class="banner-container">
+                                        <img class="banner-connecting" src="${data.Data.vars.banner_connecting}" alt="Connecting Banner">
+                                        <img class="banner-detail" src="${data.Data.vars.banner_detail}" alt="Detail Banner">
+                                    </div>
+                                    <button onclick="togglePlayers()"><i class="fas fa-users"></i> Show Players</button>
+                                    <div id="playersList" style="display:none;">
+                                        <h3><i class="fas fa-users"></i> Players:</h3>
+                                        <div class="player-search" style="display:none;">
+                                            <input type="text" id="playerSearchInput" oninput="searchPlayers()" placeholder="Search players">
+                                        </div>
+                                        <ul id="playersUl">
+                                            ${data.Data.players.map(player => `<li>${player.name}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                    <button onclick="toggleResources()"><i class="fas fa-list"></i> Show Resources</button>
+                                    <div id="resourcesList" style="display:none;">
+                                        <h3><i class="fas fa-cubes"></i> Resources:</h3>
+                                        <div class="resource-search">
+                                            <input type="text" id="resourceSearchInput" oninput="searchResources()" placeholder="Search resources">
+                                        </div>
+                                        <ul>
+                                            ${data.Data.resources.map(resource => `<li>${resource}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `;
+
+                                createEmbed(embedContent);
+                            })
+                            .catch(error => {
+                                createEmbed(`<p class="error">Error occurred while fetching server details</p>`);
+                                console.error(error);
+                            });
+                    }
+                })
+                .catch(error => {
+                    createEmbed(`<p class="error">Error occurred while fetching data</p>`);
+                    console.error(error);
+                });
+        }
+
+        // Function to toggle the visibility of the players list, like magic
+        function togglePlayers() {
+            const playersList = document.getElementById('playersList');
+            if (playersList.style.display === 'none') {
+                playersList.style.display = 'block';
+
+                const playersUl = document.getElementById('playersUl');
+                playersUl.innerHTML = ''; // Clear previous content
+
+                const dataPlayers = document.querySelectorAll('.embed ul li');
+                dataPlayers.forEach(player => {
+                    const li = document.createElement('li');
+                    li.textContent = player.textContent;
+                    playersUl.appendChild(li);
+                });
+            } else {
+                playersList.style.display = 'none';
+            }
+        }
+
+        // Function to toggle the visibility of the resources list, like magic
+        function toggleResources() {
+            const resourcesList = document.getElementById('resourcesList');
+            if (resourcesList.style.display === 'none') {
+                resourcesList.style.display = 'block';
+
+                const resourcesGrid = document.getElementById('resourcesGrid');
+                resourcesGrid.innerHTML = ''; // Clear previous content
+
+                const dataResources = document.querySelectorAll('.embed ul li');
+                dataResources.forEach(resource => {
+                    const li = document.createElement('li');
+                    li.textContent = resource.textContent;
+                    resourcesGrid.appendChild(li);
+                });
+            } else {
+                resourcesList.style.display = 'none';
+            }
+        }
+
+        // Function to filter resources based on the search query
+        function searchResources() {
+            const input = document.getElementById('resourceSearchInput').value.toLowerCase();
+            const resourceItems = document.querySelectorAll('#resourcesList ul li');
+
+            resourceItems.forEach(item => {
+                const resourceName = item.textContent.toLowerCase();
+                if (resourceName.includes(input)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to filter players based on the search query
+        function searchPlayers() {
+            const input = document.getElementById('playerSearchInput').value.toLowerCase();
+            const playerItems = document.querySelectorAll('#playersUl li');
+
+            playerItems.forEach(item => {
+                const playerName = item.textContent.toLowerCase();
+                if (playerName.includes(input)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

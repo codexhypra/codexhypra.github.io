@@ -1,131 +1,334 @@
+/* Color palette for light theme */
+:root {
+    --text: #fafafa; /* White */
+    --background: #fafafa; /* Light Gray */
+    --primary: #f40552; /* Pinkish Red */
+    --primary-dark: #c90444; /* Darker variation of primary color */
+    --secondary: #1A1A1A; /* Dark Gray */
+    --secondary-dark: #333333; /* Black */
+    --accent: #ed78ab; /* Pinkish Purple */
+    --accent-dark: #cc608f; /* Darker variation of accent color */
 
-@font-face {
-  font-family: 'CustomFont';
-  /* Add the path to your 'Font.ttf' file when you have it */
-  src: url('./cfx-src/Font.ttf');
+    /* Add the color for the resource list here */
+    --resource-list-item-bg: #252525; /* Darker variation of primary color for resource list items */
 }
 
-.go-back-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  font-size: 0; /* Set font-size to zero to remove any text space */
-  color: #fff;
-  background-color: #333;
-  border: 2px;
-  border-color: #e91e63;
-  cursor: pointer;
-  z-index: 9999;
-}
-
-.go-back-button i {
-  border: 2px;
-  border-color: #e91e63;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-}
-
+/* Default (Light) mode styles */
 body {
-  margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--secondary); /* Use the secondary color from the color palette */
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease;
+    background-color: var(--background); /* Light mode background color */
 }
 
-.background {
-  background-image: url('https://cdn.discordapp.com/attachments/938222625828773969/1125471409158750289/bg_bitted.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.box {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  background-color: rgba(0, 0, 0, 0.502);
-  backdrop-filter: blur(5px);
-  border: 2px solid #e91e63;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 24px;
-  font-family: 'CustomFont', Arial, sans-serif;
-  resize: both;
-  overflow: auto !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary); /* Use the primary color from the color palette */
 }
 
-.info-box {
-  background-color: rgba(137, 137, 137, 0.5);
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.info-text {
-  font-family: 'CustomFont', Arial, sans-serif;
-  color: #ffffff;
-  margin-bottom: 10px;
-  text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.info-text-main {
-  font-size: 24px;
-}
-
-.subline {
-  font-size: 12px;
-  color: rgb(186, 186, 186);
-  text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-input[type="text"] {
-  border: 2px solid #e91e63;
-  padding: 10px;
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #ffffff;
-  background-color: #000000;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 button {
-  background-color: #e91e63;
-  color: #ffffff;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: var(--primary); /* Use the primary color from the color palette */
+    color: var(--text); /* Use the text color from the color palette */
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-.resize-icon {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  z-index: 2;
+.button-primary {
+    background-color: var(--primary); /* Use the primary color from the color palette */
 }
 
-.embedded-website {
-  display: none;
-  width: 100%;
-  height: 500px;
-  border: none;
-  border-radius: 10px;
-  overflow: auto;
-  margin-top: 10px;
+.button-secondary {
+    background-color: var(--secondary-dark); /* Use the darker variation of secondary color */
 }
 
-.embedded-website::-webkit-scrollbar {
-  display: none;
+.embed {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: var(--background); /* Use the background color from the color palette */
+    overflow-wrap: break-word;
+}
+
+.embed p {
+    margin: 5px 0;
+    color: var(--secondary); /* Use the secondary color from the color palette */
+    word-break: break-all;
+}
+
+.embed h2 {
+    margin-top: 0;
+    color: var(--primary); /* Use the primary color from the color palette */
+}
+
+.error {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+#resourcesList {
+    margin-top: 10px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#resourcesList ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 480px) {
+    #resourcesList ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Override the color for the resource list item */
+#resourcesList ul li {
+    background-color: var(--resource-list-item-bg); /* Use the color for the resource list items */
+    color: var(--text); /* Use the text color from the color palette */
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* Add the pink stroke border */
+    border: 1px solid var(--primary);
+}
+
+#resourcesList ul li:hover {
+    background-color: var(--primary); /* Use the primary color from the color palette on hover */
+    transform: scale(1.1); /* Cool animation on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.banner-connecting,
+.banner-detail {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 10px auto;
+    border: 2px solid var(--primary); /* Use the primary color from the color palette */
+    border-radius: 5px;
+    animation: fadeIn 1s ease; /* Cool animation on page load */
+}
+
+@media (max-width: 480px) {
+    .banner-connecting,
+    .banner-detail {
+        max-width: 80%;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); } /* Start with 0 opacity and 10px up */
+    to { opacity: 1; transform: translateY(0); } /* End with 1 opacity and original position */
+}
+
+#serverLogo {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 2px solid var(--primary); /* Use the primary color from the color palette */
+    border-radius: 5px;
+    background-size: cover;
+}
+
+/* Dark mode styles */
+body.dark-theme {
+    background-color: #111;
+    color: #fff;
+}
+
+.dark-theme .container {
+    /* Additional styles for container in dark mode */
+}
+
+.dark-theme h1 {
+    color: var(--primary); /* Use the primary color from the color palette */
+}
+
+.dark-theme input {
+    /* Additional styles for input in dark mode */
+}
+
+.dark-theme button {
+    background-color: var(--primary); /* Use the primary color from the color palette */
+}
+
+.dark-theme .embed {
+    border: 2px solid #444;
+    background-color: #222;
+}
+
+.dark-theme .embed p {
+    color: #ccc;
+}
+
+.dark-theme .embed h2 {
+    color: var(--primary); /* Use the primary color from the color palette */
+}
+
+.dark-theme #resourcesList ul li {
+    background-color: var(--resource-list-item-bg); /* Use the color for the resource list items */
+    color: var(--text); /* Use the text color from the color palette */
+    border: 2px solid var(--primary); /* Add the pink stroke border */
+}
+
+.dark-theme #resourcesList ul li:hover {
+    background-color: var(--primary-dark); /* Use the darker variation of primary color on hover */
+}
+
+/* Style for the resource search bar */
+
+.resource-search input[type="text"] {
+    flex: 1; /* Use flex to make the input expand to fill the available space */
+    padding: 5px; /* Increase padding to give more space inside the search bar */
+    font-size: 20px;
+    border: none;
+    background: none;
+    color: var(--text); /* Use the text color from the color palette */
+}
+
+.resource-search i {
+    color: var(--text); /* Use the text color from the color palette */
+    font-size: 20px;
+    margin-left: 5px; /* Adjust the margin to align the icon with the input */
+}
+
+/* Additional mobile styles for the resource search bar */
+@media (max-width: 480px) {
+    .resource-search {
+        float: none;
+        margin-bottom: 10px; /* Add some space between the search bar and the resources list on mobile */
+    }
+}
+
+/* Cool animation for the primary buttons */
+button.button-primary {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.button-primary:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Cool animation for the dark mode toggle button */
+#darkModeToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    background-color: var(--primary); /* Use the primary color from the color palette */
+    color: var(--text); /* Use the text color from the color palette */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 999; /* Ensure it stays on top of other elements */
+    opacity: 0;
+    transform: translateY(10px);
+    animation: slideIn 1s ease forwards; /* Cool animation on page load */
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Style for the players list */
+#playersList {
+    margin-top: 10px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#playersList ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 480px) {
+    #playersList ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Override the color for the player list item */
+#playersList ul li {
+    background-color: var(--resource-list-item-bg); /* Use the color for the resource list items */
+    color: var(--text); /* Use the text color from the color palette */
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* Add the pink stroke border */
+    border: 1px solid var(--primary);
+}
+
+#playersList ul li:hover {
+    background-color: var(--primary); /* Use the primary color from the color palette on hover */
+    transform: scale(1.1); /* Cool animation on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Style for the player search bar */
+.player-search input[type="text"] {
+    flex: 1; /* Use flex to make the input expand to fill the available space */
+    padding: 5px; /* Increase padding to give more space inside the search bar */
+    font-size: 20px;
+    border: none;
+    background: none;
+    color: var(--text); /* Use the text color from the color palette */
+}
+
+.player-search i {
+    color: var(--text); /* Use the text color from the color palette */
+    font-size: 20px;
+    margin-left: 5px; /* Adjust the margin to align the icon with the input */
+}
+
+/* Additional mobile styles for the player search bar */
+@media (max-width: 480px) {
+    .player-search {
+        float: none;
+        margin-bottom: 10px; /* Add some space between the search bar and the players list on mobile */
+    }
 }
