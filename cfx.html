@@ -1,48 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Bot Website</title>
-    <link rel="stylesheet" href="./cfx-src/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome CSS -->
     <script src="https://kit.fontawesome.com/f63ac1ec2a.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <button id="darkModeToggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
     <div class="container">
         <h1><i class="fas fa-robot"></i> CFX FINDER WEB BY HYPRA</h1>
         <input type="text" id="codeInput" placeholder="Enter your cfx code">
         <button onclick="getCfxInfo()" class="button-primary"><i class="fas fa-search"></i> Get Server Info</button>
+
+        <!-- Output will be displayed here -->
         <div id="output"></div>
-        
-        <!-- Players Feature - Display all players by default -->
-        <div id="playersList" style="display:none;">
-            <h3><i class="fas fa-users"></i> Players:</h3>
-            <div class="player-search" style="display:none;">
-                <input type="text" id="playerSearchInput" oninput="searchPlayers()" placeholder="Search players">
-                <i class="fas fa-search"></i>
-            </div>
-            <ul id="playersUl">
-                <!-- Players will be displayed here -->
-            </ul>
-        </div>
-        <!-- End of Players Feature -->
-        
-        <!-- Resources Feature - Hidden by default, shows when "Show Resources" button is clicked -->
-        <div id="resourcesList" style="display:none;">
-            <h3><i class="fas fa-cubes"></i> Resources:</h3>
-            <div class="resource-search">
-                <input type="text" id="resourceSearchInput" oninput="searchResources()" placeholder="Search resources">
-                <i class="fas fa-search"></i>
-            </div>
-            <ul>
-                <!-- Resources will be displayed here -->
-            </ul>
-        </div>
-        <!-- End of Resources Feature -->
-        
     </div>
+
     <script>
         // Function to toggle dark mode like a boss
         function toggleTheme() {
@@ -104,16 +82,24 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.statusCode === 404) {
-                        createEmbed(`<p class="error">Invalid Code</p>`);
+                        const embedContent = `<p class="error">Invalid Code</p>`;
+                        createEmbed(embedContent);
                     } else {
                         // Process the data and make another API call to get additional server details
                         const ipAddress = data.Data.connectEndPoints[0].split(':')[0];
-                        const geoApiUrl = `http://ip-api.com/json/${ipAddress}`;
+                        const geoApiUrl = `https://ipapi.co/${ipAddress}/json/`;
 
                         fetch(geoApiUrl)
                             .then(response => response.json())
                             .then(geoData => {
                                 // Create an embed content with all the available data
+                                let playerListItems = data.Data.players.map(player => `
+                                    <li>
+                                        <span style="display:none;" id="playerId_${player.id}"></i> ID: ${player.id} |</span>
+                                        <span>${player.name}</span>
+                                    </li>
+                                `).join('');
+
                                 let embedContent = `
                                     <h2><i class="fas fa-server"></i> ${data.Data.hostname}</h2>
                                     <p><i class="fas fa-globe"></i> IP:Port: ${data.Data.connectEndPoints[0]}</p>
@@ -125,9 +111,7 @@
                                     <p><i class="fas fa-toggle-on"></i> Onesync Enabled: ${data.Data.vars.onesync_enabled}</p>
                                     <p><i class="fas fa-globe"></i> Country: ${geoData.country}</p>
                                     <p><i class="fas fa-city"></i> City: ${geoData.city}</p>
-                                    <p><i class="fas fa-wifi"></i> ISP: ${geoData.isp}</p>
-                                    <p><i class="fas fa-building"></i> Org: ${geoData.org}</p>
-                                    <p><i class="fas fa-map-marker-alt"></i> Zip Code: ${geoData.zip}</p>
+                                    <p><i class="fas fa-wifi"></i> ISP: ${geoData.org}</p>
                                     <p><i class="fas fa-clock"></i> Timezone: ${geoData.timezone}</p>
                                     <!-- Add more data fields as needed -->
                                     <div class="banner-container">
@@ -135,16 +119,17 @@
                                         <img class="banner-detail" src="${data.Data.vars.banner_detail}" alt="Detail Banner">
                                     </div>
                                     <button onclick="togglePlayers()"><i class="fas fa-users"></i> Show Players</button>
+                                    <button onclick="toggleResources()"><i class="fas fa-list"></i> Show Resources</button>
                                     <div id="playersList" style="display:none;">
                                         <h3><i class="fas fa-users"></i> Players:</h3>
-                                        <div class="player-search" style="display:none;">
+                                        <div class="player-search">
                                             <input type="text" id="playerSearchInput" oninput="searchPlayers()" placeholder="Search players">
                                         </div>
+                                        <button onclick="togglePlayerIds()"><i class="fas fa-id-card"></i> <span>Show IDs</span></button>
                                         <ul id="playersUl">
-                                            ${data.Data.players.map(player => `<li>${player.name}</li>`).join('')}
+                                            ${playerListItems}
                                         </ul>
                                     </div>
-                                    <button onclick="toggleResources()"><i class="fas fa-list"></i> Show Resources</button>
                                     <div id="resourcesList" style="display:none;">
                                         <h3><i class="fas fa-cubes"></i> Resources:</h3>
                                         <div class="resource-search">
@@ -159,34 +144,30 @@
                                 createEmbed(embedContent);
                             })
                             .catch(error => {
-                                createEmbed(`<p class="error">Error occurred while fetching server details</p>`);
+                                const embedContent = `<p class="error">Error occurred while fetching server details</p>`;
+                                createEmbed(embedContent);
                                 console.error(error);
                             });
                     }
                 })
                 .catch(error => {
-                    createEmbed(`<p class="error">Error occurred while fetching data</p>`);
+                    const embedContent = `<p class="error">Error occurred while fetching data</p>`;
+                    createEmbed(embedContent);
                     console.error(error);
                 });
         }
 
-        // Function to toggle the visibility of the players list, like magic
+        // Function to toggle the visibility of the players list and the player search bar
         function togglePlayers() {
             const playersList = document.getElementById('playersList');
+            const playerSearch = document.getElementById('playerSearchContainer');
+
             if (playersList.style.display === 'none') {
                 playersList.style.display = 'block';
-
-                const playersUl = document.getElementById('playersUl');
-                playersUl.innerHTML = ''; // Clear previous content
-
-                const dataPlayers = document.querySelectorAll('.embed ul li');
-                dataPlayers.forEach(player => {
-                    const li = document.createElement('li');
-                    li.textContent = player.textContent;
-                    playersUl.appendChild(li);
-                });
+                playerSearch.style.display = 'none';
             } else {
                 playersList.style.display = 'none';
+                playerSearch.style.display = 'block';
             }
         }
 
@@ -231,7 +212,7 @@
             const playerItems = document.querySelectorAll('#playersUl li');
 
             playerItems.forEach(item => {
-                const playerName = item.textContent.toLowerCase();
+                const playerName = item.querySelector('span').textContent.toLowerCase();
                 if (playerName.includes(input)) {
                     item.style.display = 'block';
                 } else {
@@ -239,6 +220,64 @@
                 }
             });
         }
+
+        // Function to toggle the visibility of player IDs when the "Show IDs" button is clicked
+        function togglePlayerIds() {
+            const playerIds = document.querySelectorAll('[id^=playerId_]');
+            playerIds.forEach(playerIdElement => {
+                playerIdElement.style.display = playerIdElement.style.display === 'none' ? 'inline' : 'none';
+            });
+        }
+
+        // Function to fetch Discord ID for a player using the same API as player names and IDs
+        function getDiscordId(playerId) {
+            const fivemApiUrl = `https://servers-frontend.fivem.net/api/servers/single/${code}`;
+
+            return fetch(fivemApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const playerData = data.players.find(player => player.id === playerId);
+                    if (playerData && playerData.identifiers) {
+                        const discordIdentifier = playerData.identifiers.find(identifier => identifier.startsWith('discord:'));
+                        if (discordIdentifier) {
+                            return discordIdentifier.split(':')[1];
+                        }
+                    }
+                    return 'N/A';
+                });
+        }
+
+        let showDiscordIDs = false;
+
+        // Function to replace player names with their specific Discord IDs when the "Show Discord IDs" button is clicked
+        function toggleDiscordIds() {
+            const playerItems = document.querySelectorAll('#playersUl li');
+            playerItems.forEach(item => {
+                const playerIdElement = item.querySelector('span[id^=playerId_]');
+                if (playerIdElement && playerIdElement.textContent) {
+                    const playerNameElement = item.querySelector('span');
+
+                    if (showDiscordIDs) {
+                        // Show player names again
+                        const playerName = playerIdElement.textContent.trim().replace('ID: ', '');
+                        playerNameElement.textContent = playerName;
+                    } else {
+                        // Show Discord IDs
+                        const playerId = playerIdElement.textContent.trim().replace('ID: ', '');
+                        getDiscordId(playerId)
+                            .then(discordId => {
+                                playerIdElement.textContent = `Discord: ${discordId}`;
+                            })
+                            .catch(error => {
+                                console.error(error);
+                                playerIdElement.textContent = `Discord: N/A`;
+                            });
+                    }
+                }
+            });
+            showDiscordIDs = !showDiscordIDs;
+        }
     </script>
 </body>
+
 </html>

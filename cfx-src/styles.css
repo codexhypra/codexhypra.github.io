@@ -23,6 +23,33 @@ body {
     background-color: var(--background); /* Light mode background color */
 }
 
+/* Add a custom scrollbar style for webkit-based browsers (e.g., Chrome, Safari) */
+body::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+    background-color: transparent; /* Set the background color of the scrollbar track to transparent */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Set the color of the scrollbar thumb (handle) */
+    border-radius: 10px; /* Round the corners of the scrollbar thumb */
+}
+
+/* Hide the scrollbar in Firefox */
+body {
+    scrollbar-width: none; /* Hide the scrollbar in Firefox */
+}
+
+/* Add a custom scrollbar style for Firefox */
+body::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+    background-color: transparent; /* Set the background color of the scrollbar track to transparent */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Set the color of the scrollbar thumb (handle) */
+    border-radius: 10px; /* Round the corners of the scrollbar thumb */
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -124,7 +151,6 @@ button {
 
 #resourcesList ul li:hover {
     background-color: var(--primary); /* Use the primary color from the color palette on hover */
-    transform: scale(1.1); /* Cool animation on hover */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -147,8 +173,8 @@ button {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); } /* Start with 0 opacity and 10px up */
-    to { opacity: 1; transform: translateY(0); } /* End with 1 opacity and original position */
+    from { opacity: 0; } /* Start with 0 opacity */
+    to { opacity: 1; } /* End with 1 opacity */
 }
 
 #serverLogo {
@@ -239,7 +265,6 @@ button.button-primary {
 
 button.button-primary:hover {
     background-color: var(--primary-dark);
-    transform: scale(1.05);
 }
 
 /* Cool animation for the dark mode toggle button */
@@ -298,6 +323,7 @@ button.button-primary:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
 
     /* Add the pink stroke border */
     border: 1px solid var(--primary);
@@ -305,11 +331,17 @@ button.button-primary:hover {
 
 #playersList ul li:hover {
     background-color: var(--primary); /* Use the primary color from the color palette on hover */
-    transform: scale(1.1); /* Cool animation on hover */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* Style for the player search bar */
+.player-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 .player-search input[type="text"] {
     flex: 1; /* Use flex to make the input expand to fill the available space */
     padding: 5px; /* Increase padding to give more space inside the search bar */
