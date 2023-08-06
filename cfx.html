@@ -1,3 +1,11 @@
+<title>HYPRAS'S FINDER</title>
+<meta content="HYPRAS'S FINDER" property="og:title" />
+<meta content="HYPRAS'S CFX FINDER, LETS YOU GET INFO FROM THE CFX OF A FIVEM SERVER SUCH AS THE IP ADRESS PORT PLAYER COUNT ASWELL THE PLAYER NAMES AND ID ALSO RESOURCES AND LOT MORE" property="og:description" />
+<meta content="https://embed.com/https://web.hypra.gay/cfx" property="og:url" />
+<meta content="https://img.hypra.gay/cfxlogo.webp" property="og:image" />
+<meta content="#e72450" data-react-helmet="true" name="theme-color" />
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +21,7 @@
 <body>
     <button id="darkModeToggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
     <div class="container">
-        <h1><i class="fas fa-robot"></i> CFX FINDER WEB BY HYPRA</h1>
+        <h1><i class="fa-solid fa-road"></i></i> CFX FINDER WEB BY HYPRA</h1>
         <input type="text" id="codeInput" placeholder="Enter your cfx code">
         <button onclick="getCfxInfo()" class="button-primary"><i class="fas fa-search"></i> Get Server Info</button>
 
@@ -212,8 +220,12 @@
             const playerItems = document.querySelectorAll('#playersUl li');
 
             playerItems.forEach(item => {
-                const playerName = item.querySelector('span').textContent.toLowerCase();
-                if (playerName.includes(input)) {
+                const playerNameElement = item.querySelector('span:not([style*="display:none"])');
+                const playerIdElement = item.querySelector('span[id^=playerId_]:not([style*="display:none"])');
+                const playerName = playerNameElement.textContent.toLowerCase();
+                const playerId = playerIdElement.textContent.toLowerCase();
+
+                if (playerName.includes(input) || playerId.includes(input)) {
                     item.style.display = 'block';
                 } else {
                     item.style.display = 'none';
@@ -227,55 +239,6 @@
             playerIds.forEach(playerIdElement => {
                 playerIdElement.style.display = playerIdElement.style.display === 'none' ? 'inline' : 'none';
             });
-        }
-
-        // Function to fetch Discord ID for a player using the same API as player names and IDs
-        function getDiscordId(playerId) {
-            const fivemApiUrl = `https://servers-frontend.fivem.net/api/servers/single/${code}`;
-
-            return fetch(fivemApiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const playerData = data.players.find(player => player.id === playerId);
-                    if (playerData && playerData.identifiers) {
-                        const discordIdentifier = playerData.identifiers.find(identifier => identifier.startsWith('discord:'));
-                        if (discordIdentifier) {
-                            return discordIdentifier.split(':')[1];
-                        }
-                    }
-                    return 'N/A';
-                });
-        }
-
-        let showDiscordIDs = false;
-
-        // Function to replace player names with their specific Discord IDs when the "Show Discord IDs" button is clicked
-        function toggleDiscordIds() {
-            const playerItems = document.querySelectorAll('#playersUl li');
-            playerItems.forEach(item => {
-                const playerIdElement = item.querySelector('span[id^=playerId_]');
-                if (playerIdElement && playerIdElement.textContent) {
-                    const playerNameElement = item.querySelector('span');
-
-                    if (showDiscordIDs) {
-                        // Show player names again
-                        const playerName = playerIdElement.textContent.trim().replace('ID: ', '');
-                        playerNameElement.textContent = playerName;
-                    } else {
-                        // Show Discord IDs
-                        const playerId = playerIdElement.textContent.trim().replace('ID: ', '');
-                        getDiscordId(playerId)
-                            .then(discordId => {
-                                playerIdElement.textContent = `Discord: ${discordId}`;
-                            })
-                            .catch(error => {
-                                console.error(error);
-                                playerIdElement.textContent = `Discord: N/A`;
-                            });
-                    }
-                }
-            });
-            showDiscordIDs = !showDiscordIDs;
         }
     </script>
 </body>
