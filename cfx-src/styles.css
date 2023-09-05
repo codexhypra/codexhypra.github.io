@@ -364,3 +364,19 @@ button.button-primary:hover {
         margin-bottom: 10px; /* Add some space between the search bar and the players list on mobile */
     }
 }
+
+/* Add this CSS to your styles.css file */
+/* Adjust the max-width and height values as needed */
+
+@media screen and (max-width: 768px) { /* Adjust the screen width breakpoint as needed */
+    .banner-container {
+        max-width: 80%; /* Adjust the maximum width of the banner container */
+    }
+
+    .banner-connecting,
+    .banner-detail {
+        max-width: 100%; /* Adjust the maximum width of the banners */
+        height: auto; /* Allow the height to adjust proportionally */
+        margin: 10px auto; /* Add margin to center the banners */
+    }
+}
