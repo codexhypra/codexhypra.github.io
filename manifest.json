@@ -1,0 +1,21 @@
+{
+  "name": "CFX Finder by Hypra",
+  "short_name": "CFX Finder",
+  "description": "Find information about your FiveM server",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#e72452",
+  "theme_color": "#e72452",
+  "icons": [
+    {
+      "src": "./cfx-src/cfxlogo.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "./cfx-src/cfxlogo.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}
