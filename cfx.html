@@ -5,10 +5,8 @@
 <meta content="https://img.hypra.gay/cfxlogo.webp" property="og:image" />
 <meta content="#e72452" data-react-helmet="true" name="theme-color" />
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +17,6 @@
     <script src="https://kit.fontawesome.com/f63ac1ec2a.js" crossorigin="anonymous"></script>
     <link rel="manifest" href="/manifest.json"> <!-- Added Manifest Link -->
 </head>
-
 <body>
     <button id="darkModeToggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
     <div class="container">
@@ -102,50 +99,49 @@
                         fetch(geoApiUrl)
                             .then(response => response.json())
                             .then(geoData => {
-// Define a function to convert ^ color codes to HTML spans with styles
-function convertColorCodes(text) {
-    const colors = ['#F0F0F0', '#F44336', '#4CAF50', '#FFEB3B', '#42A5F5', '#03A9F4', '#9C27B0', '#F0F0F0', '#FF5722', '#9E9E9E'];
-    const parts = text.split('^');
-    let html = '';
-    let currentColor = null;
+                                // Define a function to convert ^ color codes to HTML spans with styles
+                                function convertColorCodes(text) {
+                                    const colors = ['#F0F0F0', '#F44336', '#4CAF50', '#FFEB3B', '#42A5F5', '#03A9F4', '#9C27B0', '#F0F0F0', '#FF5722', '#9E9E9E'];
+                                    const parts = text.split('^');
+                                    let html = '';
+                                    let currentColor = null;
 
-    for (let i = 0; i < parts.length; i++) {
-        const part = parts[i];
-        if (i === 0) {
-            html += part;
-        } else if (part.length >= 1) {
-            const colorCode = part.charAt(0);
-            const restOfText = part.slice(1);
-            const colorIndex = parseInt(colorCode, 10);
-            
-            if (!isNaN(colorIndex) && colorIndex >= 0 && colorIndex < colors.length) {
-                const color = colors[colorIndex];
-                if (currentColor !== color) {
-                    if (currentColor) {
-                        html += '</span>';
-                    }
-                    html += `<span style="color: ${color}">${restOfText}`;
-                    currentColor = color;
-                } else {
-                    html += restOfText;
-                }
-            } else {
-                // Not a valid color code, just add it as is
-                html += `^${part}`;
-            }
-        }
-    }
+                                    for (let i = 0; i < parts.length; i++) {
+                                        const part = parts[i];
+                                        if (i === 0) {
+                                            html += part;
+                                        } else if (part.length >= 1) {
+                                            const colorCode = part.charAt(0);
+                                            const restOfText = part.slice(1);
+                                            const colorIndex = parseInt(colorCode, 10);
 
-    if (currentColor) {
-        html += '</span>';
-    }
+                                            if (!isNaN(colorIndex) && colorIndex >= 0 && colorIndex < colors.length) {
+                                                const color = colors[colorIndex];
+                                                if (currentColor !== color) {
+                                                    if (currentColor) {
+                                                        html += '</span>';
+                                                    }
+                                                    html += `<span style="color: ${color}">${restOfText}`;
+                                                    currentColor = color;
+                                                } else {
+                                                    html += restOfText;
+                                                }
+                                            } else {
+                                                // Not a valid color code, just add it as is
+                                                html += `^${part}`;
+                                            }
+                                        }
+                                    }
 
-    return html;
-}
+                                    if (currentColor) {
+                                        html += '</span>';
+                                    }
 
-// Use the convertColorCodes function to create the server name with colored parts
-const serverName = convertColorCodes(data.Data.hostname);
+                                    return html;
+                                }
 
+                                // Use the convertColorCodes function to create the server name with colored parts
+                                const serverName = convertColorCodes(data.Data.hostname);
 
                                 let playerListItems = data.Data.players.map(player => `
                                     <li>
@@ -155,6 +151,10 @@ const serverName = convertColorCodes(data.Data.hostname);
                                 `).join('');
 
                                 let embedContent = `
+                                    <!-- Display the CFX icon here -->
+                                    <div class="cfx-icon-container">
+                                    <img class="cfx-icon" src="https://servers-live.fivem.net/servers/icon/${code}/${data.Data.iconVersion}.png" alt="CFX Icon">
+                                    </div>
                                     <h2><i class="fas fa-server"></i> ${serverName}</h2>
                                     <p><i class="fas fa-globe"></i> IP:Port: ${data.Data.connectEndPoints[0]}</p>
                                     <p><i class="fas fa-server"></i> Server Name: ${data.Data.hostname}</p>
@@ -170,10 +170,10 @@ const serverName = convertColorCodes(data.Data.hostname);
                                     <p><i class="fas fa-wifi"></i> ISP: ${geoData.org}</p>
                                     <p><i class="fas fa-clock"></i> Timezone: ${geoData.timezone}</p>
                                     <div class="owner-info">
-                                    <div class="avatar-circle">
-                                    <img src="${data.Data.ownerAvatar}" alt="Owner Avatar">
-                                    </div>
-                                    <p><span>Owner:</span> <a href="${data.Data.ownerProfile}" target="_blank">${data.Data.ownerName}</a></p>
+                                        <div class="avatar-circle">
+                                            <img src="${data.Data.ownerAvatar}" alt="Owner Avatar">
+                                        </div>
+                                        <p><span>Owner:</span> <a href="${data.Data.ownerProfile}" target="_blank">${data.Data.ownerName}</a></p>
                                     </div>
                                     <!-- Add more data fields as needed -->
                                     <div class="banner-container">
@@ -204,6 +204,16 @@ const serverName = convertColorCodes(data.Data.hostname);
                                 `;
 
                                 createEmbed(embedContent);
+
+                                // Fetch the latest CFX icon
+                                const cfxIconUrl = `https://servers-live.fivem.net/servers/icon/${code}/${data.Data.iconVersion}.png`;
+
+                                // Open the CFX icon in a new tab
+                                const cfxIconLink = document.createElement('a');
+                                cfxIconLink.href = cfxIconUrl;
+                                cfxIconLink.target = '_blank';
+
+                                output.appendChild(cfxIconLink);
                             })
                             .catch(error => {
                                 const embedContent = `<p class="error">Error occurred while fetching server details</p>`;
@@ -217,83 +227,81 @@ const serverName = convertColorCodes(data.Data.hostname);
                     createEmbed(embedContent);
                     console.error(error);
                 });
-    }
-
-    // Function to toggle the visibility of the players list and the player search bar
-    function togglePlayers() {
-        const playersList = document.getElementById('playersList');
-        const playerSearch = document.getElementById('playerSearchContainer');
-
-        if (playersList.style.display === 'none') {
-            playersList.style.display = 'block';
-            playerSearch.style.display = 'none';
-        } else {
-            playersList.style.display = 'none';
-            playerSearch.style.display = 'block';
         }
-    }
 
-    // Function to toggle the visibility of the resources list, like magic
-    function toggleResources() {
-        const resourcesList = document.getElementById('resourcesList');
-        if (resourcesList.style.display === 'none') {
-            resourcesList.style.display = 'block';
+        // Function to toggle the visibility of the players list and the player search bar
+        function togglePlayers() {
+            const playersList = document.getElementById('playersList');
+            const playerSearch = document.getElementById('playerSearchContainer');
 
-            const resourcesGrid = document.getElementById('resourcesGrid');
-            resourcesGrid.innerHTML = ''; // Clear previous content
-
-            const dataResources = document.querySelectorAll('.embed ul li');
-            dataResources.forEach(resource => {
-                const li = document.createElement('li');
-                li.textContent = resource.textContent;
-                resourcesGrid.appendChild(li);
-            });
-        } else {
-            resourcesList.style.display = 'none';
-        }
-    }
-
-    // Function to filter resources based on the search query
-    function searchResources() {
-        const input = document.getElementById('resourceSearchInput').value.toLowerCase();
-        const resourceItems = document.querySelectorAll('#resourcesList ul li');
-
-        resourceItems.forEach(item => {
-            const resourceName = item.textContent.toLowerCase();
-            if (resourceName.includes(input)) {
-                item.style.display = 'block';
+            if (playersList.style.display === 'none') {
+                playersList.style.display = 'block';
+                playerSearch.style.display = 'none';
             } else {
-                item.style.display = 'none';
+                playersList.style.display = 'none';
+                playerSearch.style.display = 'block';
             }
-        });
-    }
-
-// Function to filter players based on the search query
-function searchPlayers() {
-    const input = document.getElementById('playerSearchInput').value.toLowerCase();
-    const playerItems = document.querySelectorAll('#playersUl li');
-
-    playerItems.forEach(item => {
-        const playerNameElement = item.querySelector('span:not([style*="display:none"])');
-        const playerName = playerNameElement.textContent.toLowerCase();
-
-        if (playerName.includes(input)) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
         }
-    });
-}
 
+        // Function to toggle the visibility of the resources list, like magic
+        function toggleResources() {
+            const resourcesList = document.getElementById('resourcesList');
+            if (resourcesList.style.display === 'none') {
+                resourcesList.style.display = 'block';
 
-    // Function to toggle the visibility of player IDs when the "Show IDs" button is clicked
-    function togglePlayerIds() {
-        const playerIds = document.querySelectorAll('[id^=playerId_]');
-        playerIds.forEach(playerIdElement => {
-            playerIdElement.style.display = playerIdElement.style.display === 'none' ? 'inline' : 'none';
-        });
-    }
-</script>
+                const resourcesGrid = document.getElementById('resourcesGrid');
+                resourcesGrid.innerHTML = ''; // Clear previous content
+
+                const dataResources = document.querySelectorAll('.embed ul li');
+                dataResources.forEach(resource => {
+                    const li = document.createElement('li');
+                    li.textContent = resource.textContent;
+                    resourcesGrid.appendChild(li);
+                });
+            } else {
+                resourcesList.style.display = 'none';
+            }
+        }
+
+        // Function to filter resources based on the search query
+        function searchResources() {
+            const input = document.getElementById('resourceSearchInput').value.toLowerCase();
+            const resourceItems = document.querySelectorAll('#resourcesList ul li');
+
+            resourceItems.forEach(item => {
+                const resourceName = item.textContent.toLowerCase();
+                if (resourceName.includes(input)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to filter players based on the search query
+        function searchPlayers() {
+            const input = document.getElementById('playerSearchInput').value.toLowerCase();
+            const playerItems = document.querySelectorAll('#playersUl li');
+
+            playerItems.forEach(item => {
+                const playerNameElement = item.querySelector('span:not([style*="display:none"])');
+                const playerName = playerNameElement.textContent.toLowerCase();
+
+                if (playerName.includes(input)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to toggle the visibility of player IDs when the "Show IDs" button is clicked
+        function togglePlayerIds() {
+            const playerIds = document.querySelectorAll('[id^=playerId_]');
+            playerIds.forEach(playerIdElement => {
+                playerIdElement.style.display = playerIdElement.style.display === 'none' ? 'inline' : 'none';
+            });
+        }
+    </script>
 </body>
-
 </html>

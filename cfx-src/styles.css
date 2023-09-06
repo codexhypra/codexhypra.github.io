@@ -75,6 +75,68 @@ input {
     align-items: center;
 }
 
+/* Style for the server logo */
+.server-logo {
+    width: 60px; /* Set the desired width */
+    height: 60px; /* Set the desired height */
+    background-size: cover;
+    background-position: center;
+    border: 2px solid var(--primary); /* Use the primary color from the color palette */
+    border-radius: 5px;
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+}
+
+
+/* Loading screen styles */
+#loadingScreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingio-spinner-double-ring-jzw9rpc8te {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+/* Rest of your existing CSS */
+
+/* Style for the CFX icon */
+/* Add this CSS to your main CSS file */
+
+/* Style for the CFX icon */
+
+.cfx-icon-container {
+    text-align: center; /* Center the content horizontally */
+    margin-top: 0px;
+}
+
+.cfx-icon {
+    max-width: 150px; /* Adjust the maximum width of the CFX icon */
+    height: auto;
+    display: inline-block; /* Make the CFX icon inline with the text */
+    border: 2px solid var(--primary); /* Use the primary color from the color palette for the border */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease; /* Add a smooth hover effect */
+    margin: 0 auto; /* Center the CFX icon horizontally within its container */
+}
+
+
+
+
 .avatar-circle {
     width: 18px;
     height: 18px;
@@ -82,6 +144,17 @@ input {
     overflow: hidden;
     margin-right: 4px;
     background: var(--primary); /* Use the primary color as the background color for the circle */
+}
+
+/* Style for the server logo container */
+.server-logo-container {
+            position: absolute;
+            top: 10px; /* Adjust the top position as needed */
+            right: 10px; /* Adjust the right position as needed */
+            width: 60px; /* Set the desired width */
+            height: 60px; /* Set the desired height */
+            background-size: cover;
+            background-position: center;
 }
 
 .avatar-circle img {
