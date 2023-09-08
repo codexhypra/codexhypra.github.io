@@ -193,12 +193,14 @@ button {
 }
 
 .embed {
+    width: 560px;
     border: 2px solid #ddd;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
     background-color: var(--background); /* Use the background color from the color palette */
     overflow-wrap: break-word;
+
 }
 
 .embed p {
@@ -405,9 +407,10 @@ button.button-primary:hover {
 #playersList ul {
     list-style: none;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+    
 }
 
 @media (max-width: 480px) {
@@ -426,6 +429,8 @@ button.button-primary:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 30%;
+    
     
 
     /* Add the pink stroke border */

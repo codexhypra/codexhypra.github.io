@@ -48,9 +48,19 @@
             localStorage.setItem('serverCode', code);
         }
 
+
         // Function to handle player click event and show/hide player info
         function togglePlayerInfo(playerId) {
             const playerInfo = document.getElementById(`playerInfo_${playerId}`);
+            const playerUl = document.getElementById(`playerUI_${playerId}`)
+
+            if (playerUl.style.width !== '100%' || playerUl.style.width === '') {
+                playerUl.style.width = '100%';
+            } else {
+                playerUl.style.width = '30%';
+            }
+
+
 
             if (playerInfo.style.display === 'none' || playerInfo.style.display === '') {
                 playerInfo.style.display = 'block';
@@ -160,7 +170,7 @@
                                 const serverName = convertColorCodes(data.Data.hostname);
 
                                 let playerListItems = data.Data.players.map(player => `
-                                    <li>
+                                    <li id="playerUI_${player.id}">
                                         <span style="display:none;" id="playerId_${player.id}"></i> ID: ${player.id} |</span>
                                         <span style="cursor: pointer;" onclick="togglePlayerInfo(${player.id})">${player.name}</span>
                                         <!-- Add this div to hold player info -->
@@ -224,6 +234,7 @@
                                             ${data.Data.resources.map(resource => `<li>${resource}</li>`).join('')}
                                         </ul>
                                     </div>
+
                                 `;
 
                                 createEmbed(embedContent);
