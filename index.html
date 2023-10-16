@@ -35,7 +35,15 @@
                 </div>
             </a>
         </div>
-        <button id="widget-button" class="active-button">DISCORD</button>
+        <div class="button-group">
+            <a href="cfx">
+                <button class="text-button">CFX</button>
+            </a>
+            <button class="text-button" id="widget-button">DISCORD</button>
+            <a href="https://design.hypra.pro" target="_blank">
+                <button class="text-button">PORTFOLIO</button>
+            </a>
+        </div>
         <div class="widget-container" id="widget-container">
             <widgetbot id="button"
                 type="button"
@@ -46,12 +54,6 @@
             ></widgetbot> 
             <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
         </div>
-        <a href="cfx">
-            <button id="cfx-button">CFX</button>
-        </a>
-        <!-- <a href="lookup">
-            <button id="ip-button">IP</button>
-        </a> -->
     </div>
     <script>
         const widgetButton = document.getElementById('widget-button');

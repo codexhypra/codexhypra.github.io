@@ -2,12 +2,11 @@
     font-family: 'GGSANS';
     /* Add the path to your 'Font.ttf' file when you have it */
     src: url('./ggsans-ExtraBold.ttf'); 
-  }
+}
 
 html, body {
     overflow: hidden;
 }
-
 
 html {
     height: 100%;
@@ -99,6 +98,7 @@ a {
 }
 
 #widget-button {
+    font-family: 'GGSANS', Arial, sans-serif;
     background-color: #353d98;
     color: white;
     border: none;
@@ -112,7 +112,6 @@ a {
     font-family: 'GGSANS', Arial, sans-serif;
     background-color: #5865F2;
 }
-
 
 #widget-button:hover {
     font-family: 'GGSANS', Arial, sans-serif;
@@ -141,8 +140,28 @@ button {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #ff0055;
-  }
+}
+
+.text-button {
+    background-color: #ff006a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 1px; /* Reduce horizontal space between buttons */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.text-button:hover {
+    background-color: #ff0055;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff116198;
+    transform: scale(1.1);
+}
+
